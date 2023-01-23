@@ -1,0 +1,4 @@
+const firebaseConfig = {
+  // Your Firebase Config Goes Here. Rename to firebase.js
+};
+export default firebaseConfig;
