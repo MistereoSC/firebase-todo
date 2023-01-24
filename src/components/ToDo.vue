@@ -7,7 +7,11 @@
 			</div>
 			<div class="sub-container">
 				<form @submit.prevent="addTask">
-					<input type="text" placeholder="I neeed to . . ." />
+					<input
+						v-model="taskInput"
+						type="text"
+						placeholder="I need to . . ."
+					/>
 					<button>Add</button>
 				</form>
 			</div>
@@ -104,23 +108,29 @@ form input {
 
 <script>
 import ToDoItem from '@/components/ToDoItem.vue'
-
-import firebaseConfig from '@/firebase.js'
-import {initializeApp} from 'Firebase/app'
-import {getFirestore, collection, getDocs} from 'Firebase/firestore'
+import {
+	collection,
+	getDocs,
+	addDoc,
+	deleteDoc,
+	updateDoc,
+	doc,
+} from 'Firebase/firestore'
 
 export default {
+	inject: ['firebase'],
 	components: {ToDoItem},
 	data() {
 		return {
 			tasks: [],
+			taskInput: '',
+			db: this.firebase,
+			colRef: null,
 		}
 	},
 	mounted() {
-		const app = initializeApp(firebaseConfig)
-		const db = getFirestore()
-		const colRef = collection(db, 'tasks')
-		getDocs(colRef)
+		this.colRef = collection(this.db, 'tasks')
+		getDocs(this.colRef)
 			.then((snapshot) => {
 				snapshot.docs.forEach((doc) => {
 					this.tasks.push({...doc.data(), id: doc.id})
@@ -131,9 +141,29 @@ export default {
 			})
 	},
 	methods: {
-		addTask() {},
-		deleteTask(e) {},
-		toggleDoneTask(v, e) {},
+		addTask() {
+			console.log(this.taskInput)
+			const r = addDoc(this.colRef, {
+				done: false,
+				message: this.taskInput,
+			}).then((v) => {
+				this.tasks.push({
+					done: false,
+					message: this.taskInput,
+					id: v.id,
+				})
+				this.taskInput = ''
+			})
+		},
+		deleteTask(e) {
+			const docRef = doc(this.db, 'tasks', e.id)
+			deleteDoc(docRef)
+			this.tasks = this.tasks.filter((task) => task.id != e.id)
+		},
+		toggleDoneTask(v, e) {
+			const docRef = doc(this.db, 'tasks', e.id)
+			updateDoc(docRef, {done: v})
+		},
 	},
 	computed: {},
 }
