@@ -2,8 +2,11 @@
 
 ToDo Lists are probably the `Hello World` project of learning a new framework etc.<br>
 This is my Xth ToDo list after trying out plain JS, Vue and other languages. This time to learn the basics of Firebase.
+<br><br>
+Firebase credentials go into the /src/firebase.js file
 <br>
-Firebase credentials go into the /src/firebase.js file, database name is "tasks" by default but can be changed in main.js.
+Collection name: 'tasks' <br>
+Documents: 'done': Boolean, 'message': String <br>
 
 ## Project Setup
 
