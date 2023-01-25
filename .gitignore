@@ -26,5 +26,7 @@ coverage
 *.sln
 *.sw?
 
-# Authentication
+# Firebase
 firebase.js
+.firebase/*
+.firebaserc

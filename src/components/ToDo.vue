@@ -107,7 +107,7 @@ form input {
 </style>
 
 <script>
-import ToDoItem from '@/components/ToDoItem.vue'
+import ToDoItem from './ToDoItem.vue'
 import {
 	collection,
 	getDocs,
@@ -115,8 +115,7 @@ import {
 	deleteDoc,
 	updateDoc,
 	doc,
-} from 'Firebase/firestore'
-
+} from 'https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js'
 export default {
 	inject: ['firebase'],
 	components: {ToDoItem},
