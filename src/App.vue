@@ -7,5 +7,5 @@
 <style scoped></style>
 
 <script setup>
-import ToDo from '@/components/ToDo.vue'
+import ToDo from './components/ToDo.vue'
 </script>

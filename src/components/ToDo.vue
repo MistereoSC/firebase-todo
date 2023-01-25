@@ -115,7 +115,7 @@ import {
 	deleteDoc,
 	updateDoc,
 	doc,
-} from 'https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js'
+} from 'Firebase/firestore'
 export default {
 	inject: ['firebase'],
 	components: {ToDoItem},

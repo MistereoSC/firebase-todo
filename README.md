@@ -10,8 +10,16 @@ Documents: 'done': Boolean, 'message': String <br>
 ![Screenshot](https://i.imgur.com/Yb7YdFn.png)
 
 ## Project Setup
+Firbase Emulation Suite required for Development Environment
+
+```sh
+npm install -g firebase-tools
+firebase init emulators
+npm run emulate
+```
 
 ```sh
 npm install
-npm run dev
+npm run dev     (development environment)
+npm run serve   (production environment)
 ```
